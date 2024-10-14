@@ -1,6 +1,5 @@
-import people from "./assets/Images/people.svg"
-import arrow from "./assets/Images/arrow.svg"
-import trash from "./assets/Images/lixeira.svg"
+import people from "../../assets/Images/people.svg"
+import arrow from "../../assets/Images/arrow.svg"
 
 import {
   Conteiner,
@@ -10,28 +9,31 @@ import {
   InputLabel,
   Input,
   BtnCadastro,
-  Users
 } from "./Stylles";
 import { useRef, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function App() {
 
   const [users, setUser] = useState([]);
   const name = useRef()
   const age = useRef()
+  const navigate = useNavigate();
 
-  function addNewUser() {
+  async function addNewUser() {
+    const { data: newUser } = await axios.post("http://localhost:3001/users", {
+      name: name.current.value,
+      age: age.current.value
+    })
 
-    setUser([...users, { id: Math.random(), name: name.current.value, age: age.current.value },])
+    setUser([...users, newUser])
+    //setUser([...users, { id: Math.random(), name: name.current.value, age: age.current.value },])
+    navigate('usuarios')
 
   };
 
-  function deleteUser(userID) {
 
-    const newUser = users.filter((user) => user.id !== userID);
-    setUser(newUser)
-
-  }
 
   return (
 
@@ -44,16 +46,7 @@ function App() {
         <InputLabel>Idade</InputLabel>
         <Input ref={age} placeholder="Idade"></Input>
         <BtnCadastro onClick={addNewUser}>Cadastrar <img src={arrow} alt="seta" /></BtnCadastro>
-        <ul>
-          {users.map((user) => (
 
-            <Users key={user.id}>
-              <p className="name_user">{user.name}</p> <p>{user.age}</p>
-              <button onClick={() => deleteUser(user.id)}><img src={trash} alt="lata-de-lixo" /></button>
-            </Users>
-
-          ))}
-        </ul>
       </ConteinerItens>
 
     </Conteiner>

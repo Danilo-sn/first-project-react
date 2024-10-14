@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import background from "./assets/Images/background.svg"
+import background from "../../assets/Images/background.svg"
+
 
 
 export const Conteiner = styled.div`
@@ -68,9 +69,11 @@ export const BtnCadastro = styled.button`
     gap: 20px;
     color: #FFFFFF;
     border: none;
+    text-decoration: none;
     font-size: 17px;
     font-weight: 700;
     cursor: pointer;
+    margin-top: 80px;
 
     &:hover{
         opacity: 0.8;
@@ -81,28 +84,4 @@ export const BtnCadastro = styled.button`
     }
 `;
 
-export const Users = styled.li`
-    color: #FFFFFF;
-    background: #FFFFFF40;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 24px;
-    font-weight: 400;
-    box-shadow: 0px 4px 4px 0px #00000040;
-    width: 342px;
-    height: 58px;
-    padding: 0px 25px 0px 25px;
-    border-radius: 14px;
-    border: none;
-    outline: none;
-    margin-top: 20px;
 
-    button{
-        border: none;
-        outline: none;
-        cursor: pointer;
-        background: none;
-    }
-
-`
